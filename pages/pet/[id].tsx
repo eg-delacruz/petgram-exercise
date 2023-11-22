@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRouter } from 'next/router';
 
 //Components
 import SEO_Layout from '@components/SEO_Layout/SEO_Layout';
@@ -6,23 +6,23 @@ import Layout from '@components/Layout/Layout';
 import { ListOfCategories } from '@components/ListOfCategories/ListOfCategories';
 import ListOfPhotoCards from '@components/ListOfPhotoCards/ListOfPhotoCards';
 
-//TODO: Layout
-//TOTO: get the category id from props
-const Home = () => {
+const PetCategoryPictures = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const stringId = id?.toString() || '';
+
   return (
     <SEO_Layout
-      title='Petgram'
-      metaName='Petgram'
-      metaDescription='Tu red social para mascotas'
+      title='Petgam | Categorías'
+      metaName='Categorías'
+      metaDescription='Fotos de mascotas según su categoría.'
     >
       <Layout>
         <ListOfCategories />
-        {/* We send empty string to get all photos */}
-        <ListOfPhotoCards categoryId='' />
+        <ListOfPhotoCards categoryId={stringId} />
       </Layout>
     </SEO_Layout>
   );
 };
 
-//Memoize the component to avoid re-renders
-export default React.memo(Home);
+export default PetCategoryPictures;

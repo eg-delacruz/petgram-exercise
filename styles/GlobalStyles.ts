@@ -33,7 +33,7 @@ html {
     max-width: 500px;
     overscroll-behavior: none;
     width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    filter: drop-shadow(0 0 20px rgba(255,255,255,.2));
   }
 
   #app {

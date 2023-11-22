@@ -12,12 +12,14 @@ import useFetchingData from '@hooks/useFetchingData';
 //Types
 //Localtypes
 type CategoryType = {
-  id: number;
+  id: string;
   cover: string;
   emoji: string;
   path: string;
 };
 
+//TODO: check if the component fixes on top if user scrolls down
+//TODO: use a global state to save the categories of use reac-query to avoid fetching the data again when changing pages
 const ListOfCategoriesComponent = () => {
   //States
   const { data, loading, error } = useFetchingData({
@@ -70,7 +72,7 @@ const ListOfCategoriesComponent = () => {
         ) : (
           data.map((category: CategoryType) => (
             <ListItem key={category.id}>
-              <Category {...category} />
+              <Category {...category} path={`/pet/${category.id}`} />
             </ListItem>
           ))
         )}
