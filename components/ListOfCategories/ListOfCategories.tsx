@@ -1,7 +1,14 @@
 import { useState, useEffect, memo } from 'react';
 
 //styles
-import { List, FixedList, ListItem, SkeletonCategory } from './Styles';
+import {
+  List,
+  FixedList,
+  ListItem,
+  SkeletonCategoryContainer,
+  SkeletonCategory,
+  SkeletonEmoji,
+} from './Styles';
 
 //Components
 import Category from '@components/Category/Category';
@@ -18,7 +25,6 @@ type CategoryType = {
   path: string;
 };
 
-//TODO: use a global state to save the categories of use reac-query to avoid fetching the data again when changing pages
 const ListOfCategoriesComponent = () => {
   //States
   const { data, loading, error } = useFetchingData({
@@ -43,30 +49,17 @@ const ListOfCategoriesComponent = () => {
 
   return (
     <>
+      {/* We have two list components, the normal one and the fixed one */}
       <FixedList fixed={showFixed ? showFixed : undefined}>
         {loading ? (
           <>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
+            {Array(7)
+              .fill(null)
+              .map((_, index) => (
+                <ListItem key={index}>
+                  <SkeletonCategory />
+                </ListItem>
+              ))}
           </>
         ) : (
           data.map((category: CategoryType) => (
@@ -80,27 +73,14 @@ const ListOfCategoriesComponent = () => {
       <List fixed={showFixed ? showFixed : undefined}>
         {loading ? (
           <>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
-            <ListItem>
-              <SkeletonCategory />
-            </ListItem>
+            {Array(7)
+              .fill(null)
+              .map((_, index) => (
+                <SkeletonCategoryContainer key={index}>
+                  <SkeletonCategory />
+                  <SkeletonEmoji />
+                </SkeletonCategoryContainer>
+              ))}
           </>
         ) : (
           data.map((category: CategoryType) => (

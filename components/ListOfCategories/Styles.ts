@@ -50,6 +50,13 @@ export const ListItem = styled.li`
   padding: 0 8px;
 `;
 
+export const SkeletonCategoryContainer = styled.div`
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const SkeletonCategory = styled.div`
   width: 75px;
   height: 75px;
@@ -59,6 +66,14 @@ export const SkeletonCategory = styled.div`
   ${skeletonAnimation()}
   border: 1px solid #ddd;
   box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.2);
-  margin: 0 auto 10px auto;
+  margin: 0 auto 0px auto;
   padding: 10px;
+  animation-delay: 0.5s;
+`;
+
+export const SkeletonEmoji = styled.div`
+  ${skeletonAnimation()}
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 `;

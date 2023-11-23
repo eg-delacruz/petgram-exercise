@@ -11,8 +11,6 @@ type Props = {
   emoji?: string;
 };
 
-//TODO: Use a nicer loaging icon for the emoji (or maybe a skeleton circle)
-//Category represented in a circle with an emage and an emoji
 const Category = ({
   cover = DEFAULT_IMAGE,
   path = '#',

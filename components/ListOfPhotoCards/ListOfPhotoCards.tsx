@@ -1,5 +1,11 @@
 //Styles
-import { Error } from './Styles';
+import {
+  Error,
+  SkeletonPhoto,
+  SkeletonHeart,
+  SkeletonLikesContainer,
+  SkeletonLikesCount,
+} from './Styles';
 
 //Components
 import PhotoCard from '@components/PhotoCard/PhotoCard';
@@ -19,17 +25,44 @@ type Photo = {
   src: string;
 };
 
-//TODO: Create a better loading animation (maybe a skeleton)
 const ListOfPhotoCards = ({ categoryId }: Props) => {
   const response = useQuery(GET_PHOTOS, {
     variables: { categoryId },
   });
   const { data, loading, error } = response;
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <ul>
+        <div>
+          <SkeletonPhoto />
+          <SkeletonLikesContainer>
+            <SkeletonHeart />
+            <SkeletonLikesCount />
+          </SkeletonLikesContainer>
+        </div>
+        <div>
+          <SkeletonPhoto />
+          <SkeletonLikesContainer>
+            <SkeletonHeart />
+            <SkeletonLikesCount />
+          </SkeletonLikesContainer>
+        </div>
+        <div>
+          <SkeletonPhoto />
+          <SkeletonLikesContainer>
+            <SkeletonHeart />
+            <SkeletonLikesCount />
+          </SkeletonLikesContainer>
+        </div>
+      </ul>
+    );
+
   if (error)
     return (
-      <Error>Hubo un error al cargar las imágenes. Inténtalo más tarde</Error>
+      <div>
+        <Error>Hubo un error al cargar las imágenes. Inténtalo más tarde</Error>
+      </div>
     );
 
   const { photos } = data;

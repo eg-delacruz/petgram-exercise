@@ -34,7 +34,7 @@ const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }: Props) => {
             </Link>
 
             {typeof likes === 'number' && likes >= 0 && likes !== undefined && (
-              <FavButton likes={likes} />
+              <FavButton likes={likes} id={id} />
             )}
           </>
         )}
