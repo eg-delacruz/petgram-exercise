@@ -1,7 +1,7 @@
 import { useState, useEffect, memo } from 'react';
 
 //styles
-import { List, ListItem, SkeletonCategory } from './Styles';
+import { List, FixedList, ListItem, SkeletonCategory } from './Styles';
 
 //Components
 import Category from '@components/Category/Category';
@@ -18,7 +18,6 @@ type CategoryType = {
   path: string;
 };
 
-//TODO: check if the component fixes on top if user scrolls down
 //TODO: use a global state to save the categories of use reac-query to avoid fetching the data again when changing pages
 const ListOfCategoriesComponent = () => {
   //States
@@ -30,7 +29,7 @@ const ListOfCategoriesComponent = () => {
   useEffect(() => {
     const onScroll = () => {
       //Returns boolean
-      const newShowFixed = window.scrollY > 200;
+      const newShowFixed = window.scrollY > 170;
       //If newShowFixed is different from showFixed, then setShowFixed receives the new value
       showFixed !== newShowFixed && setShowFixed(newShowFixed);
     };
@@ -44,6 +43,40 @@ const ListOfCategoriesComponent = () => {
 
   return (
     <>
+      <FixedList fixed={showFixed ? showFixed : undefined}>
+        {loading ? (
+          <>
+            <ListItem>
+              <SkeletonCategory />
+            </ListItem>
+            <ListItem>
+              <SkeletonCategory />
+            </ListItem>
+            <ListItem>
+              <SkeletonCategory />
+            </ListItem>
+            <ListItem>
+              <SkeletonCategory />
+            </ListItem>
+            <ListItem>
+              <SkeletonCategory />
+            </ListItem>
+            <ListItem>
+              <SkeletonCategory />
+            </ListItem>
+            <ListItem>
+              <SkeletonCategory />
+            </ListItem>
+          </>
+        ) : (
+          data.map((category: CategoryType) => (
+            <ListItem key={category.id}>
+              <Category {...category} path={`/pet/${category.id}`} />
+            </ListItem>
+          ))
+        )}
+      </FixedList>
+
       <List fixed={showFixed ? showFixed : undefined}>
         {loading ? (
           <>

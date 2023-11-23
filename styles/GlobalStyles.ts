@@ -28,11 +28,26 @@ html {
 
   body {
     background: #fefefe;
-    height: 100vh;
+    height: 100%;
     margin: 0 auto;
     max-width: 500px;
     overscroll-behavior: none;
     width: 100%;
+    /* Commented because it interferes with the position:fixed property of any child element */
+    /* filter: drop-shadow(0 0 20px rgba(255,255,255,.2)); */
+  }
+  /* Using the after pseudo element to avoid filter property conflicts in body tag */
+  body::after {
+    content: '';
+    background-color: #24283d;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    transform: translate(-50%, 0);
     filter: drop-shadow(0 0 20px rgba(255,255,255,.2));
   }
 

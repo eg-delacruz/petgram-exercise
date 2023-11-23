@@ -1,37 +1,15 @@
 import styled, { css } from 'styled-components';
 import { fadeIn, skeletonAnimation } from '@styles/Animation';
 
-interface ListProps {
+type ListProps = {
   fixed?: boolean;
-}
+};
 
 export const List = styled.ul<ListProps>`
   display: flex;
   overflow: scroll;
   width: 100%;
-  /* In case we get the "fixed" prop */
-  ${(props) =>
-    props.fixed &&
-    css`
-       {
-        ${fadeIn({ time: '0.5s' })}
-        background: #fff;
-        border-radius: 60px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-        left: 0;
-        margin: 0 auto;
-        max-width: 400px;
-        padding: 5px;
-        position: fixed;
-        right: 0;
-        top: -20px;
-        transform: scale(0.5);
-        z-index: 1;
-        &:: -webkit-scrollbar {
-          display: none;
-        }
-      }
-    `}
+
   &::-webkit-scrollbar {
     color: black;
     background-color: gray;
@@ -42,6 +20,29 @@ export const List = styled.ul<ListProps>`
   &::-webkit-scrollbar-thumb {
     background: #21c08b;
     border-radius: 8px;
+  }
+`;
+
+export const FixedList = styled.ul<ListProps>`
+  overflow: scroll;
+  width: 100%;
+  /* In case we get the "fixed" prop */
+  display: ${(props) => (props.fixed ? 'flex' : 'none')};
+  ${fadeIn({ time: '0.5s' })}
+  background: #fff;
+  border-radius: 60px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  left: 0;
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 5px;
+  position: fixed;
+  right: 0;
+  top: -20px;
+  transform: scale(0.5);
+  z-index: 1;
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;
 

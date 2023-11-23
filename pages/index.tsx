@@ -7,7 +7,6 @@ import { ListOfCategories } from '@components/ListOfCategories/ListOfCategories'
 import ListOfPhotoCards from '@components/ListOfPhotoCards/ListOfPhotoCards';
 
 //TODO: Layout
-//TOTO: get the category id from props
 const Home = () => {
   return (
     <SEO_Layout

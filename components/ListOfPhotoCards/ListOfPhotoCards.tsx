@@ -15,12 +15,11 @@ type Props = {
 };
 type Photo = {
   id: string;
-  liked: boolean;
   likes: number;
   src: string;
 };
 
-//TODO: Create a better loading animation
+//TODO: Create a better loading animation (maybe a skeleton)
 const ListOfPhotoCards = ({ categoryId }: Props) => {
   const response = useQuery(GET_PHOTOS, {
     variables: { categoryId },

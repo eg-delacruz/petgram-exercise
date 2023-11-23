@@ -1,5 +1,6 @@
 import { keyframes, css } from 'styled-components';
 
+//Fade in animation with keyframes
 const fadeInKeyframes = keyframes`
 from{
   filter: blur(5px);
