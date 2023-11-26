@@ -1,5 +1,6 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Context } from '../Context';
+import { useRouter } from 'next/router';
 
 //Components
 import SEO_Layout from '@components/SEO_Layout/SEO_Layout';
@@ -10,11 +11,17 @@ import UserForm from '@components/UserForm/UserForm';
 import RegisterMutation from '@containers/RegisterMutation';
 import LoginMutation from '@containers/LoginMutation';
 
-//TODO: Login. Rediriect to home if user is logged in. Redirecto from favs page and user page if user is not logged in
 const Login = () => {
   const context = useContext(Context);
+  const router = useRouter();
 
   const isAuth = context ? context.isAuth : null;
+
+  useEffect(() => {
+    if (isAuth) {
+      router.push('/');
+    }
+  }, [isAuth, router]);
 
   /////////////// Register Mutation ///////////////
   const register_Response = RegisterMutation();

@@ -38,7 +38,7 @@ const Provider = ({ children }: Props) => {
   };
 
   useEffect(() => {
-    //Si el usuario se desloguea, reseteamos el store de apollo
+    //Si el usuario se desloguea, reseteamos el store de apollo para que no queden los likes de las fotos en el localStorage
     client.resetStore();
   }, [isAuth]);
 

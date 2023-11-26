@@ -5,11 +5,16 @@ import { Button } from './Styles';
 type Props = {
   disabled: boolean;
   children: string;
+  submitFunction?: () => void | undefined | null;
 };
 
-const SubmitButton = ({ disabled, children }: Props) => {
+const SubmitButton = ({ disabled, children, submitFunction }: Props) => {
   return (
-    <Button type='submit' disabled={disabled}>
+    <Button
+      type='submit'
+      disabled={disabled}
+      onClick={submitFunction ? submitFunction : undefined}
+    >
       {children}
     </Button>
   );

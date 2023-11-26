@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Context } from '../Context';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 //Styles
 import {
@@ -30,15 +31,22 @@ type Photo = {
   src: string;
 };
 
-//TODO: protect route
 const Favs = () => {
   const [mounted, setMounted] = useState(false);
   const [storedPhotoIds] = useLocalStorage('photos', []);
   const [photoData, setPhotoData] = useState<Photo[]>([]);
 
   const context = useContext(Context);
+  const router = useRouter();
   const isAuth = context ? context.isAuth : null;
 
+  useEffect(() => {
+    if (!isAuth) {
+      router.push('/login');
+    }
+  }, [isAuth, router]);
+
+  //Prevent to use window object in SSR
   useEffect(() => {
     setMounted(true);
   }, []);
