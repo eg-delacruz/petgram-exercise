@@ -1,13 +1,23 @@
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '../Context';
+import Link from 'next/link';
+import Image from 'next/image';
 
 //Styles
-import { Description } from '@styles/pages/FavsStyles';
+import {
+  Description,
+  FavsGrid,
+  FavImgContainer,
+  FavImg,
+  NoFavsContainer,
+} from '@styles/pages/FavsStyles';
+
+//Assets
+import Dog from '@assets/Dog.svg';
 
 //Components
 import SEO_Layout from '@components/SEO_Layout/SEO_Layout';
 import Layout from '@components/Layout/Layout';
-import PhotoCard from '@components/PhotoCard/PhotoCard';
 
 //Hooks
 import useLocalStorage from '@hooks/useLocalStorage';
@@ -21,7 +31,6 @@ type Photo = {
 };
 
 //TODO: protect route
-//TODO: Add a message when there are no photosthe content
 const Favs = () => {
   const [mounted, setMounted] = useState(false);
   const [storedPhotoIds] = useLocalStorage('photos', []);
@@ -49,6 +58,19 @@ const Favs = () => {
     }
   }, [storedPhotoIds, mounted]);
 
+  const noFavs = () => {
+    const likedPhotos = photoData.filter((photo: Photo) => photo.liked);
+    if (likedPhotos.length <= 0) {
+      return (
+        <NoFavsContainer>
+          <h3>No tienes favoritos</h3>
+          <Image width={220} src={Dog} alt='Perro' />
+          <p>Ve y marca tus favoritos</p>
+        </NoFavsContainer>
+      );
+    }
+  };
+
   return (
     <SEO_Layout
       title='Tus favoritos | Petgram'
@@ -58,11 +80,20 @@ const Favs = () => {
       <Layout>
         <h1>Tus Favoritos</h1>
         <Description>Aquí puedes encontrar tus favoritos</Description>
-        <ul>
+        {noFavs()}
+        <FavsGrid>
           {photoData.map((photo: Photo) => (
-            <>{photo.liked ? <PhotoCard key={photo.id} {...photo} /> : null}</>
+            <>
+              {photo.liked ? (
+                <Link href={`/detail/${photo.id}`} key={photo.id}>
+                  <FavImgContainer>
+                    <FavImg src={photo.src} alt='Imagen de mascota favorita' />
+                  </FavImgContainer>
+                </Link>
+              ) : null}
+            </>
           ))}
-        </ul>
+        </FavsGrid>
       </Layout>
     </SEO_Layout>
   );

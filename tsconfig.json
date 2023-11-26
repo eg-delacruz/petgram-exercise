@@ -18,7 +18,8 @@
       "@components/*": ["./components/*"],
       "@hooks/*": ["./hooks/*"],
       "@hoc/*": ["./hoc/*"],
-      "@containers/*": ["./containers/*"]
+      "@containers/*": ["./containers/*"],
+      "@assets/*": ["./assets/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

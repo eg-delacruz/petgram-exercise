@@ -9,7 +9,7 @@ const User = () => {
       metaDescription='Información del usuario'
     >
       <Layout>
-        <div>User. Protect route</div>
+        <div>User. Redirect to login if not auth</div>
       </Layout>
     </SEO_Layout>
   );
