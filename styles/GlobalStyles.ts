@@ -28,11 +28,13 @@ html {
 
   body {
     background: #fefefe;
+    min-height: 100vh;
     height: 100%;
     margin: 0 auto;
     max-width: 500px;
     overscroll-behavior: none;
     width: 100%;
+    padding-bottom: 50px;
     /* Commented because it interferes with the position:fixed property of any child element */
     /* filter: drop-shadow(0 0 20px rgba(255,255,255,.2)); */
   }

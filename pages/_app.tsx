@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import Context from '../Context';
 
 import { GlobalStyles } from '@styles/GlobalStyles';
 import { NormalyzeStyles } from '@styles/Normalize';
@@ -13,10 +14,12 @@ export const client = new ApolloClient({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
-      <NormalyzeStyles />
-      <GlobalStyles />
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <Context.Provider>
+      <ApolloProvider client={client}>
+        <NormalyzeStyles />
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </Context.Provider>
   );
 }

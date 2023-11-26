@@ -50,7 +50,7 @@ const ListOfCategoriesComponent = () => {
   return (
     <>
       {/* We have two list components, the normal one and the fixed one */}
-      <FixedList fixed={showFixed ? showFixed : undefined}>
+      <FixedList $fixed={showFixed ? showFixed : undefined}>
         {loading ? (
           <>
             {Array(7)
@@ -70,7 +70,7 @@ const ListOfCategoriesComponent = () => {
         )}
       </FixedList>
 
-      <List fixed={showFixed ? showFixed : undefined}>
+      <List $fixed={showFixed ? showFixed : undefined}>
         {loading ? (
           <>
             {Array(7)

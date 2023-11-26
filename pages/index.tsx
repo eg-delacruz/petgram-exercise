@@ -6,7 +6,6 @@ import Layout from '@components/Layout/Layout';
 import { ListOfCategories } from '@components/ListOfCategories/ListOfCategories';
 import ListOfPhotoCards from '@components/ListOfPhotoCards/ListOfPhotoCards';
 
-//TODO: Layout
 const Home = () => {
   return (
     <SEO_Layout

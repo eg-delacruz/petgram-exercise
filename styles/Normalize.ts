@@ -7,7 +7,7 @@ export const NormalyzeStyles = createGlobalStyle`
   }
 
   body {
-    margin: 0;
+    /* margin: 0; */
   }
 
   main {

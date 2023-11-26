@@ -1,13 +1,13 @@
 //Components
 import { Logo } from '@components/Logo/Logo';
 import { Header } from './Styles';
+import NavBar from '@components/NavBar/NavBar';
 
 //Types
 type Props = {
   children: React.ReactNode;
 };
 
-//TODO: NavBar
 const Layout = ({ children }: Props) => {
   return (
     <>
@@ -17,7 +17,7 @@ const Layout = ({ children }: Props) => {
       </Header>
 
       {children}
-      <div>NavBar</div>
+      <NavBar />
     </>
   );
 };

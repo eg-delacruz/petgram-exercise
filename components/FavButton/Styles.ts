@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { fadeIn } from '@styles/Animation';
 
 type ButtonProps = {
-  liked?: boolean;
-  hover?: boolean;
+  $liked?: boolean;
+  $hover?: boolean;
 };
 export const Button = styled.button<ButtonProps>`
   padding-top: 8px;
@@ -17,15 +17,15 @@ export const Button = styled.button<ButtonProps>`
   & svg {
     color: #d1d1d1;
     ${(props) =>
-      props.liked &&
+      props.$liked &&
       css`
         color: red;
         ${fadeIn({ time: '0.5s' })}
       `};
 
-    ${({ hover, liked }) =>
-      hover &&
-      !liked &&
+    ${({ $hover, $liked }) =>
+      $hover &&
+      !$liked &&
       css`
         color: #a88960;
       `}

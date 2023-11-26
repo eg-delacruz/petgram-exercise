@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { fadeIn, skeletonAnimation } from '@styles/Animation';
 
 type ListProps = {
-  fixed?: boolean;
+  $fixed?: boolean;
 };
 
 export const List = styled.ul<ListProps>`
@@ -27,7 +27,7 @@ export const FixedList = styled.ul<ListProps>`
   overflow: scroll;
   width: 100%;
   /* In case we get the "fixed" prop */
-  display: ${(props) => (props.fixed ? 'flex' : 'none')};
+  display: ${(props) => (props.$fixed ? 'flex' : 'none')};
   ${fadeIn({ time: '0.5s' })}
   background: #fff;
   border-radius: 60px;

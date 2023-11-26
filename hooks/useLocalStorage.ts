@@ -1,10 +1,12 @@
-import { init } from 'next/dist/compiled/webpack/webpack';
 import { useState } from 'react';
 
 // Gets a key and a value and saves it to local storage, returning the saved value and a function to update it
 const useLocalStorage = (key: string, value: Object) => {
   // If the key is not in local storage, set it to the value passed in
   const [storedValue, setStoredValue] = useState(() => {
+    if (typeof window === 'undefined') {
+      return value;
+    }
     try {
       const item = window.localStorage.getItem(key);
       return item !== null ? JSON.parse(item) : value;
